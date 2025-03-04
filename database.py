@@ -1,5 +1,4 @@
 import duckdb
-import pandas as pd
 import re
 
 from config import DB_FILE

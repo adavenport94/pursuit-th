@@ -9,4 +9,7 @@ scikit-learn==1.6.1
 gensim==4.3.3
 numpy==1.26.4
 fuzzywuzzy==0.18.0
+
+# Linting
 black==25.1.0
+flake8==7.1.2

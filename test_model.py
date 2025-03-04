@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 from sklearn.metrics import accuracy_score, classification_report
 from url_ranking_model import UrlRanker
