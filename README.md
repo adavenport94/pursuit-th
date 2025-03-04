@@ -51,6 +51,19 @@ The ranking system currently has an accuracy of around 75% using a threshold of 
 
 ![image](images/accuracy_results.png)
 
+#### Precision & Recall
+Not Relevant (Irrelevant Links)
+- Precision (0.78): When the model predicts a link is not relevant, it’s correct 78% of the time
+- Recall (0.84): Correctly identifies 84% of actual irrelevant links.
+
+Relevant (High-Value Links)
+- Precision (0.71): When the model predicts a link is relevant, it’s correct 71% of the time
+- Recall (0.62): Correctly identifies 62% of actual relevant links
+
+F1-Score (Overall Performance)
+- Not Relevant: 0.81 - performs decently well in filtering out bad links
+- Relevant: 0.67 - struggles a bit more with catching all useful links 
+
 #### Alternative appraoch
 I initially thought about using OpenAI’s GPT, but that wouldn't have been much fun :D. That said, it would have been a pretty straightforward solution:
 - Send the URL and anchor text to OpenAI’s API.
