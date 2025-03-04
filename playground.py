@@ -5,6 +5,7 @@ from scraper import scrape_links
 Quick script to see how the scraper is working
 """
 
+
 def preprocess_urls(url_data, base_url="https://www.a2gov.org"):
     """
     Cleans and processes URL list:

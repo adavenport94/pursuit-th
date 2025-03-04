@@ -14,7 +14,7 @@ HIGH_SCORE_THRESHOLD = 0.90
 PRIORITY_MULTIPLIER = 1.2
 
 # Penalize by .95
-NON_PRIORITY_MULTIPLIER = .95
+NON_PRIORITY_MULTIPLIER = 0.95
 
 # High-value keywords that indicate strong relevance
 PRIORITY_KEY_WORDS = [

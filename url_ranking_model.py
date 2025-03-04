@@ -10,7 +10,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from fuzzywuzzy import fuzz
-from config import MODEL_PATH, PRIORITY_KEY_WORDS, NON_PRIORITY_KEY_WORDS, PRIORITY_MULTIPLIER, NON_PRIORITY_MULTIPLIER
+from config import (
+    MODEL_PATH,
+    PRIORITY_KEY_WORDS,
+    NON_PRIORITY_KEY_WORDS,
+    PRIORITY_MULTIPLIER,
+    NON_PRIORITY_MULTIPLIER,
+)
 from urllib.parse import urlparse
 
 
@@ -44,15 +50,21 @@ class UrlRanker:
 
         # Fuzzy matching feature
         df["fuzzy_score"] = df["text"].apply(
-            lambda x: max([fuzz.partial_ratio(x.lower(), keyword) for keyword in PRIORITY_KEY_WORDS]) * PRIORITY_MULTIPLIER
-)
+            lambda x: max(
+                [
+                    fuzz.partial_ratio(x.lower(), keyword)
+                    for keyword in PRIORITY_KEY_WORDS
+                ]
+            )
+            * PRIORITY_MULTIPLIER
+        )
 
         df["negative_score"] = df["text"].apply(
             lambda x: max(
                 [fuzz.partial_ratio(x.lower(), term) for term in NON_PRIORITY_KEY_WORDS]
             )
         )
-         # Penalize these terms by 95%
+        # Penalize these terms by 95%
         df["fuzzy_score"] -= df["negative_score"] * NON_PRIORITY_MULTIPLIER
 
         # Word embedding similarity
@@ -113,15 +125,21 @@ class UrlRanker:
 
         # Fuzzy matching feature
         df["fuzzy_score"] = df["text"].apply(
-            lambda x: max([fuzz.partial_ratio(x.lower(), keyword) for keyword in PRIORITY_KEY_WORDS]) * PRIORITY_MULTIPLIER
-)
+            lambda x: max(
+                [
+                    fuzz.partial_ratio(x.lower(), keyword)
+                    for keyword in PRIORITY_KEY_WORDS
+                ]
+            )
+            * PRIORITY_MULTIPLIER
+        )
 
         df["negative_score"] = df["text"].apply(
             lambda x: max(
                 [fuzz.partial_ratio(x.lower(), term) for term in NON_PRIORITY_KEY_WORDS]
             )
         )
-         # Penalize these terms by 95%
+        # Penalize these terms by 95%
         df["fuzzy_score"] -= df["negative_score"] * NON_PRIORITY_MULTIPLIER
 
         # Word embedding similarity
@@ -162,17 +180,17 @@ class UrlRanker:
 
     def _url_depth_weighting(self, url):
         """
-        Assign more weight to deeper parts of the URL. 
+        Assign more weight to deeper parts of the URL.
         Also reduce finance related keyword influence early in URL.
         """
         # Extract only the path (want to ignore domain)
         parsed_url = urlparse(url)
         path = parsed_url.path.strip("/")
-        
+
         # No meaningful path, return 0
         if not path:
             return 0
-        
+
         # Split to get depth
         parts = path.split("/")
         depth = len(parts)
@@ -186,12 +204,11 @@ class UrlRanker:
 
             # Stronger weight for deep prio words
             if any(keyword in part.lower() for keyword in PRIORITY_KEY_WORDS):
-                total_weight += (1.5 * depth_weight)
+                total_weight += 1.5 * depth_weight
 
             # Stronger penalty for deep non prio words
             if any(term in part.lower() for term in NON_PRIORITY_KEY_WORDS):
-                total_penalty += (2.0 * depth_weight)
+                total_penalty += 2.0 * depth_weight
 
         # Normalize by total depth
-        return (total_weight - total_penalty) / depth  
-
+        return (total_weight - total_penalty) / depth

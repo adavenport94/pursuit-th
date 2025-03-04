@@ -46,12 +46,14 @@ def init_db():
 
     print("Database initialized with optimized indexing.")
 
+
 def extract_domain(url):
     """
     Extracts the domain from a given URL.
     """
     domain = re.search(r"https?://([^/]+)", url)
     return domain.group(1) if domain else ""
+
 
 def save_links(df):
     """

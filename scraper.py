@@ -72,7 +72,7 @@ def scrape_links(url):
                 print(f"Timeout occurred for {url}, skipping...")
                 browser.close()
                 return []
-            
+
             links = page.query_selector_all("a")
 
         extracted_data = []
