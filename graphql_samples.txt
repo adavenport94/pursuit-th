@@ -1,0 +1,21 @@
+"""
+{
+  "query": "{ topLinks(limit: 30) { url anchorText score } }"
+}
+
+{
+  "query": "{ linksFromDomain(domain: \"example.com\") { url anchorText score scrapedFrom } }"
+}
+
+{
+  "query": "{ documentLinks { url anchorText score scrapedFrom } }"
+}
+
+{
+  "query": "{ searchLinks(keyword: \"Michigan\") { url anchorText score scrapedFrom } }"
+}
+
+{
+  "query": "{ avgScorePerDomain { domain avgScore } }"
+}
+"""
