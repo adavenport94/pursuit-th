@@ -43,7 +43,7 @@ If a link has a high score, the scraper follows it and extracts more links from 
 - This makes sure only the best URLs are explored further
 
 #### How It Could Be Improved
-The ranking system has an accuracy of about 75% using a treshold of .90. It could be improved by
+The ranking system currently has an accuracy of around 75% using a threshold of 0.90. However, as I add more data, the results get a bit jumpy, meaning the model needs a larger and more diverse dataset to stabilize. It could be improved by:
 - Training on more diverse dataset to improve accuracy.
 - Using more advanced models
 - Fine-tune priority keyword weights to better differentiate high and low-value links.
