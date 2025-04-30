@@ -8,8 +8,8 @@ To run the flask app locally, first install all packages from requirements.txt i
 preferably a virtual environment for testing. 
 ### Install locally
 ```
-git clone https://github.com/adavenport94/pursuit-th.git
-cd pursuit-th
+git clone <repo>
+cd <dir>
 <activate preferred python virtual env>
 pip install -r requirements.txt
 ```
